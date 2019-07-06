@@ -11,7 +11,7 @@ public class SpawnManager :MonoSingleton<SpawnManager>{
     public List<Wave> waves;
 
     public float moveWaitTime = 0.5f;
-    public bool isBuilding=false;
+ 
 
     Transform waveTeam;
     Transform bornPointTeam;
