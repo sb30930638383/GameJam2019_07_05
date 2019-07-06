@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager :MonoSingleton<GameManager> {
-
-   public Player player;
-
-   public int waveCount;
-
-    private void Awake()
+namespace GameJam2019
+{
+    public class GameManager : MonoSingleton<GameManager>
     {
-        player = FindObjectOfType<Player>();
+
+        public Player player;
+
+        public int waveCount;
+
+        private void Awake()
+        {
+            player = FindObjectOfType<Player>();
+        }
     }
 }
