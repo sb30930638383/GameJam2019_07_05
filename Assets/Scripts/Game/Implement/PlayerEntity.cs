@@ -18,10 +18,11 @@ namespace GameJam2019
         {
             hfsm.AddState("StateIdle", new StateIdle(this));
             hfsm.AddState("StateMove", new StateMove(this));
+            hfsm.AddState("StateAttack", new StateAttack(this));
             hfsm.Init("StateIdle");
         }
 
-        private void Update()
+        protected override void Update()
         {
             moveCache.x = Input.GetAxis("Horizontal");
             moveCache.y = Input.GetAxis("Vertical");
@@ -31,6 +32,21 @@ namespace GameJam2019
                 TempMove(moveCache);
             }
             else TempStopMove();
+
+            if (Input.GetKeyDown(KeyCode.J))
+            {
+                Attack(AttackDirEnum.Right);
+            }
+            else if (Input.GetKeyDown(KeyCode.U))
+            {
+                Attack(AttackDirEnum.Up);
+            }
+            else if (Input.GetKeyDown(KeyCode.N))
+            {
+                Attack(AttackDirEnum.Down);
+            }
+
+            base.Update();
         }
 
         protected void TempMove(Vector2 dir)
@@ -42,6 +58,21 @@ namespace GameJam2019
         protected void TempStopMove()
         {
             Post("Action.StopMove");
+        }
+
+        public override string GetAnimNameByState(string nameBase)
+        {
+            switch (nameBase)
+            {
+                case "idle": return "idle";
+                case "move": return "walk";
+                case "attack_Up": return "attackup";
+                case "attack_Down": return "attackdown";
+                case "attack_Left": return "attackright";
+                case "attack_Right": return "attackright";
+                default:
+                    return null;
+            }
         }
     }
 }

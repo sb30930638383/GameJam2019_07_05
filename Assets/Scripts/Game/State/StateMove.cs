@@ -26,6 +26,7 @@ namespace GameJam2019
         protected override void ConstructStateEvent()
         {
             AddStateEvent("State.ChangeState.Idle", "StateIdle");
+            AddStateEvent("State.ChangeState.Attack", "StateAttack");
         }
 
         protected override void ConstructActionEvent()
@@ -37,7 +38,8 @@ namespace GameJam2019
         private void DoMove(HFSMEvent evt)
         {
             Vector2 dir = (Vector2)evt.obj0;
-            const float tempMoveSpeed = 5;
+            const float tempMoveSpeed = 0.1f;
+            mOwner.Forward = dir;
             mOwner.Move(dir * tempMoveSpeed);
         }
 

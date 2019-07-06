@@ -1,0 +1,83 @@
+
+circre.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+face01
+  rotate: true
+  xy: 2, 2
+  size: 57, 72
+  orig: 57, 72
+  offset: 0, 0
+  index: -1
+face02
+  rotate: false
+  xy: 775, 169
+  size: 87, 76
+  orig: 87, 76
+  offset: 0, 0
+  index: -1
+fangkuai01
+  rotate: false
+  xy: 474, 148
+  size: 101, 97
+  orig: 101, 97
+  offset: 0, 0
+  index: -1
+fangkuai02
+  rotate: false
+  xy: 678, 149
+  size: 95, 96
+  orig: 95, 96
+  offset: 0, 0
+  index: -1
+fangkuai03
+  rotate: false
+  xy: 374, 140
+  size: 98, 105
+  orig: 98, 105
+  offset: 0, 0
+  index: -1
+fangkuai04
+  rotate: true
+  xy: 577, 148
+  size: 97, 99
+  orig: 97, 99
+  offset: 0, 0
+  index: -1
+jian
+  rotate: false
+  xy: 278, 111
+  size: 94, 134
+  orig: 94, 134
+  offset: 0, 0
+  index: -1
+jianf
+  rotate: false
+  xy: 179, 107
+  size: 97, 138
+  orig: 97, 138
+  offset: 0, 0
+  index: -1
+lian
+  rotate: false
+  xy: 2, 61
+  size: 175, 184
+  orig: 175, 184
+  offset: 0, 0
+  index: -1
+shou01
+  rotate: false
+  xy: 864, 173
+  size: 56, 72
+  orig: 56, 72
+  offset: 0, 0
+  index: -1
+shou02
+  rotate: false
+  xy: 76, 7
+  size: 62, 52
+  orig: 62, 52
+  offset: 0, 0
+  index: -1

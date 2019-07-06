@@ -18,5 +18,14 @@ namespace GameJam2019
             entityDict.Add(t.Id, t);
             return t;
         }
+
+        public PlayerEntity CreatePlayer(Vector2 pos, Vector2 fwd)
+        {
+            PlayerEntity entity = EntityBase.FactoryCreate<PlayerEntity>();
+            entity.Init(pos, fwd);
+            entityDict.Add(entity.Id, entity);
+            Global.Player = entity;
+            return entity;
+        }
     }
 }
