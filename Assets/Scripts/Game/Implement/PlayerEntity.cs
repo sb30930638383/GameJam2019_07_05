@@ -30,12 +30,18 @@ namespace GameJam2019
             {
                 TempMove(moveCache);
             }
+            else TempStopMove();
         }
 
         protected void TempMove(Vector2 dir)
         {
             Post("State.ChangeState.Move");
             Post(new HFSMEvent("Action.Move", dir));
+        }
+
+        protected void TempStopMove()
+        {
+            Post("Action.StopMove");
         }
     }
 }
