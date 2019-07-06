@@ -20,4 +20,12 @@
         Move = 0,
         Rotate = 1,
     }
+
+    public enum PropertyEnum
+    {
+        MoveSpeed = 0,
+        CurHp = 1,
+        MaxHp = 2,
+        AttackDamage = 3,
+    }
 }

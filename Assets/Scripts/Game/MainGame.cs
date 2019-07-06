@@ -14,7 +14,7 @@ namespace GameJam2019
 
         void Update()
         {
-
+            TestCreateMonster();
         }
 
         private void InitGame()
@@ -36,6 +36,16 @@ namespace GameJam2019
         private void StartGame()
         {
             EntityManager.Inst.CreatePlayer(Vector2.zero, Vector2.right);
+            
+        }
+
+        private void TestCreateMonster()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Vector2 worldPos = CameraController.Inst.MousePosition;
+                EntityManager.Inst.CreateEnemy<EnemyEntity>(worldPos, Vector2.right);
+            }
         }
     }
 }

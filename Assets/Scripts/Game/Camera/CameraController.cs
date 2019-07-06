@@ -13,6 +13,8 @@ namespace GameJam2019
             set { Global.MainCamera.transform.position = new Vector3(value.x, value.y, -49); } }
 
         public Vector2 ShakeVec { set { shakeVec = value;  } }
+        
+        public Vector2 MousePosition { get; private set; }
 
         private EntityBase followEntity;
         private Coroutine shakeCor;
@@ -28,6 +30,7 @@ namespace GameJam2019
         {
             RefreshAimPos();
             RefreshCameraPosition();
+            MousePosition = Global.MainCamera.ScreenToWorldPoint(Input.mousePosition);
         }
 
         public void Follow(EntityBase entity)

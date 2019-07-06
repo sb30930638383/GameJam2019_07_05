@@ -10,9 +10,13 @@ namespace GameJam2019
         public Vector2 Position { get { return transform.position; } set { transform.position = value; } }
         public Vector2 Forward { get { return forward; } set { forward = value.normalized; RefreshForward(); } }
         public ArmatureController ArmatureControl { get { return armatureControl; } }
+        public GameObject Model { get { return model; } }
+        public string Tag { get { return tag; } set { transform.SetTagWithChild(value); } }
 
         protected Vector2 forward;
         protected GameObject model;
+        protected new CircleCollider2D collider;
+        protected new Rigidbody2D rigidbody;
         protected ArmatureController armatureControl;
 
         public EntityBase()
@@ -57,6 +61,24 @@ namespace GameJam2019
             }
         }
 
+        public void RefreshCollider(float radius)
+        {
+            if (collider == null)
+            {
+                collider = gameObject.AddComponent<CircleCollider2D>();
+            }
+            collider.radius = radius;
+            if (rigidbody == null)
+            {
+                rigidbody = gameObject.AddComponent<Rigidbody2D>();
+                rigidbody.mass = 1000;
+                rigidbody.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+                rigidbody.freezeRotation = false;
+                rigidbody.gravityScale = 0;
+                rigidbody.drag = 1000;
+            }
+        }
+
         protected void DesModel()
         {
             if (model != null)
@@ -71,6 +93,7 @@ namespace GameJam2019
         /// </summary>
         public virtual void OnDie()
         {
+            EntityManager.Inst.RemoveEntity(this);
             DestroySelf();
         }
 

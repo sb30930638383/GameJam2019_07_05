@@ -6,19 +6,26 @@ namespace GameJam2019
 {
     public class PlayerEntity : PawnBase
     {
+        private const float cRadius = 0.85f;
+        private Vector2 cOffset = new Vector2(0, 1.2f);
+
         private Vector2 moveCache;
 
         public override void Init(Vector2 pos, Vector2 fwd)
         {
             RefreshModel("PlayerModel");
+            Tag = TagsUtil.Player;
+            RefreshCollider(cRadius);
+            collider.offset = cOffset;
             base.Init(pos, fwd);
         }
 
-        private void Start()
+        protected override void InitStatus()
         {
             hfsm.AddState("StateIdle", new StateIdle(this));
             hfsm.AddState("StateMove", new StateMove(this));
             hfsm.AddState("StateAttack", new StateAttack(this));
+            hfsm.AddState("StateDead", new StateDead(this));
             hfsm.Init("StateIdle");
         }
 
@@ -47,6 +54,14 @@ namespace GameJam2019
             }
 
             base.Update();
+        }
+
+        protected override void InitPropertyPool()
+        {
+            propertyMoveSpeed = propertyPool.CreateProperty(PropertyEnum.MoveSpeed, 5f);
+            propertyMaxHp = propertyPool.CreateProperty(PropertyEnum.MaxHp, 4);
+            propertyCurHp = propertyPool.CreateProperty(PropertyEnum.CurHp, 4);
+            propertyAttackDamage = propertyPool.CreateProperty(PropertyEnum.AttackDamage, 1);
         }
 
         protected void TempMove(Vector2 dir)

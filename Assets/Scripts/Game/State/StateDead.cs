@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace GameJam2019
 {
-    public class StateIdle : StateWithEventMap<PawnBase>
+    public class StateDead : StateWithEventMap<PawnBase>
     {
-        public StateIdle(PawnBase owner) : base(owner)
+        public StateDead(PawnBase owner) : base(owner)
         {
         }
 
@@ -14,7 +14,14 @@ namespace GameJam2019
         {
             AddActionOnStart(() =>
             {
-                mOwner.PlayAnimation(0, mOwner.GetAnimNameByState("idle"), true);
+                if (mOwner is EnemyEntity)
+                {
+                    MessageManager.Inst.SendEnemyDie(mOwner.Id);
+                }
+                else if (mOwner is PlayerEntity)
+                {
+                    mOwner.Post("State.ChangeState.Idle");
+                }
             });
         }
 
@@ -28,9 +35,7 @@ namespace GameJam2019
 
         protected override void ConstructStateEvent()
         {
-            AddStateEvent("State.ChangeState.Move", "StateMove");
-            AddStateEvent("State.ChangeState.Attack", "StateAttack");
-            AddStateEvent("State.ChangeState.Dead", "StateDead");
+            AddStateEvent("State.ChangeState.Idle", "StateIdle");
         }
 
         protected override void ConstructActionEvent()

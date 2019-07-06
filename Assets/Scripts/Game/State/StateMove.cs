@@ -6,8 +6,11 @@ namespace GameJam2019
 {
     public class StateMove : StateWithEventMap<PawnBase>
     {
+        private PropertyNode propertyMoveSpeed;
+
         public StateMove(PawnBase owner) : base(owner)
         {
+            propertyMoveSpeed = owner.GetProperty(PropertyEnum.MoveSpeed);
         }
 
         protected override void ConstructStart()
@@ -27,6 +30,7 @@ namespace GameJam2019
         {
             AddStateEvent("State.ChangeState.Idle", "StateIdle");
             AddStateEvent("State.ChangeState.Attack", "StateAttack");
+            AddStateEvent("State.ChangeState.Dead", "StateDead");
         }
 
         protected override void ConstructActionEvent()
@@ -38,9 +42,8 @@ namespace GameJam2019
         private void DoMove(HFSMEvent evt)
         {
             Vector2 dir = (Vector2)evt.obj0;
-            const float tempMoveSpeed = 0.1f;
             mOwner.Forward = dir;
-            mOwner.Move(dir * tempMoveSpeed);
+            mOwner.Move(dir * propertyMoveSpeed.ValueFixed * Time.deltaTime);
         }
 
         private void DoStopMove()

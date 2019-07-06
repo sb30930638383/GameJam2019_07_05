@@ -12,4 +12,20 @@ public static class EngineUtil
         child.rotation = Quaternion.identity;
         child.localScale = Vector3.one;
     }
+
+    public static void SetTagWithChild(this Transform parent, string tag)
+    {
+        parent.tag = tag;
+        if (parent.childCount > 0)
+        {
+            for (int i = 0; i < parent.childCount; i++)
+            {
+                Transform child;
+                child = parent.GetChild(i);
+                child.tag = tag;
+                if (child.childCount > 0)
+                    SetTagWithChild(child, tag);
+            }
+        }
+    }
 }

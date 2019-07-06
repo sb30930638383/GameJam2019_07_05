@@ -21,7 +21,7 @@ namespace GameJam2019
 
         public Weapon weapon;
 
-        public List<GameObject> enemyProtectList;
+        //public List<GameObject> enemyProtectList;
 
         private void Awake()
         {
@@ -30,7 +30,7 @@ namespace GameJam2019
 
         public void ClearEnemyList()
         {
-            enemyProtectList.Clear();
+            //enemyProtectList.Clear();
         }
 
        public void Attack()

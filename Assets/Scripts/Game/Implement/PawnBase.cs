@@ -9,12 +9,19 @@ namespace GameJam2019
     public class PawnBase : EntityBase, IStateable
     {
         protected readonly HFSM hfsm = new HFSM();
+        protected readonly PropertyPool propertyPool = new PropertyPool();
+        protected PropertyNode propertyMoveSpeed;
+        protected PropertyNode propertyMaxHp;
+        protected PropertyNode propertyCurHp;
+        protected PropertyNode propertyAttackDamage;
         private Dictionary<ActionFlagEnum, int> actionFlagDict = new Dictionary<ActionFlagEnum, int>();
 
         public override void Init(Vector2 pos, Vector2 fwd)
         {
             InitActionFlag(ActionFlagEnum.Move);
             InitActionFlag(ActionFlagEnum.Rotate);
+            InitPropertyPool();
+            InitStatus();
             base.Init(pos, fwd);
         }
 
@@ -22,6 +29,21 @@ namespace GameJam2019
         {
             hfsm.Update();
             base.Update();
+        }
+
+        protected virtual void InitPropertyPool()
+        {
+
+        }
+
+        protected virtual void InitStatus()
+        {
+
+        }
+
+        public PropertyNode GetProperty(PropertyEnum propertyType)
+        {
+            return propertyPool.GetProperty(propertyType);
         }
 
         protected override void RefreshForward()
@@ -59,6 +81,15 @@ namespace GameJam2019
             System.Diagnostics.Debug.Assert(!actionFlagDict.ContainsKey(actionFlag),
                 string.Format("error: action flag {0} not initialized.", actionFlag.ToString()));
             return actionFlagDict[actionFlag] >= 0;
+        }
+
+        public virtual void OnDamage(float damage)
+        {
+            propertyCurHp.AddValueAdd(-damage);
+            if (propertyCurHp.ValueFixed <= 0)
+            {
+                Post("State.ChangeState.Dead");
+            }
         }
 
         public bool Post(string msg)
