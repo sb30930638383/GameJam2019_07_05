@@ -13,7 +13,12 @@ namespace GameJam2019
         {
             base.Init(pos, fwd);
         }
-        
+
+        public void Move(Vector2 dir)
+        {
+            Position += dir;
+        }
+
         public bool Post(string msg)
         {
             return hfsm.Post(msg);

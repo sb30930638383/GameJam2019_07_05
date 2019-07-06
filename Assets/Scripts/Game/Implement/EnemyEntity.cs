@@ -14,6 +14,7 @@ namespace GameJam2019
         protected virtual void Start()
         {
             hfsm.AddState("StateIdle", new StateIdle(this));
+            hfsm.AddState("StateMove", new StateMove(this));
             hfsm.Init("StateIdle");
         }
     }

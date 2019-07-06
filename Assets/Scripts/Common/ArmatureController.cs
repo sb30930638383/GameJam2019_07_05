@@ -4,10 +4,13 @@ using UnityEngine;
 
 namespace GameJam2019
 {
-    public static class Global
+    public class ArmatureController
     {
-        public static Canvas Canvas { get; set; }
 
-        public Player 
+
+        public void Init()
+        {
+
+        }
     }
 }

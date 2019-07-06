@@ -28,7 +28,7 @@ namespace GameJam2019
 
         protected override void ConstructStateEvent()
         {
-
+            AddStateEvent("State.ChangeState.Move", "StateMove");
         }
 
         protected override void ConstructActionEvent()

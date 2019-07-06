@@ -6,6 +6,8 @@ namespace GameJam2019
 {
     public class EntityBase : ObjectBase
     {
+        public Vector2 Position { get { return transform.position; } set { transform.position = Position; } }
+
         protected GameObject model;
 
         public virtual void Init(Vector2 pos, Vector2 fwd)
