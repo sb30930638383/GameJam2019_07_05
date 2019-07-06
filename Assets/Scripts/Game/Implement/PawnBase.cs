@@ -14,12 +14,14 @@ namespace GameJam2019
         protected PropertyNode propertyMaxHp;
         protected PropertyNode propertyCurHp;
         protected PropertyNode propertyAttackDamage;
+        protected PropertyNode propertySp;
         private Dictionary<ActionFlagEnum, int> actionFlagDict = new Dictionary<ActionFlagEnum, int>();
 
         public override void Init(Vector2 pos, Vector2 fwd)
         {
             InitActionFlag(ActionFlagEnum.Move);
             InitActionFlag(ActionFlagEnum.Rotate);
+            InitActionFlag(ActionFlagEnum.ReceiveDamage);
             InitPropertyPool();
             InitStatus();
             base.Init(pos, fwd);
@@ -53,11 +55,6 @@ namespace GameJam2019
             base.RefreshForward();
         }
 
-        public void Move(Vector2 dir)
-        {
-            Position += dir;
-        }
-
         public void Attack(AttackDirEnum atkDir)
         {
             Post(new HFSMEvent("State.ChangeState.Attack", atkDir));
@@ -85,11 +82,38 @@ namespace GameJam2019
 
         public virtual void OnDamage(float damage)
         {
+            if (!GetActionFlag(ActionFlagEnum.ReceiveDamage))
+                return;
             propertyCurHp.AddValueAdd(-damage);
             if (propertyCurHp.ValueFixed <= 0)
             {
                 Post("State.ChangeState.Dead");
             }
+        }
+
+        public void AddDamageProtect(float duration, float blinkInterval)
+        {
+            ModiflyAction(ActionFlagEnum.ReceiveDamage, false);
+            StartCoroutine(IBlinkAct(duration, blinkInterval));
+        }
+
+        private IEnumerator IBlinkAct(float duration, float interval)
+        {
+            float timer = 0;
+            int alpha = 0;
+            armatureControl.SetAlpha(0);
+            while ((duration -= Time.deltaTime) > 0)
+            {
+                if ((timer += Time.deltaTime) >= interval)
+                {
+                    alpha = 1 - alpha;
+                    armatureControl.SetAlpha(alpha);
+                    timer = 0;
+                }
+                yield return null;
+            }
+            armatureControl.SetAlpha(1);
+            ModiflyAction(ActionFlagEnum.ReceiveDamage, true);
         }
 
         public bool Post(string msg)

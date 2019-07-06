@@ -28,4 +28,26 @@ public static class EngineUtil
             }
         }
     }
+
+    public static Vector2 WorldPosToUIPos(Vector2 worldPos)
+    {
+        Vector2 viewPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+        return Camera.main.ViewportToWorldPoint(viewPos);
+    }
+
+    public static string ToStr(this Vector2 v2)
+    {
+        return string.Format("{0},{1}", v2.x, v2.y);
+    }
+
+    public static Vector2 ToV2(this string str)
+    {
+        if (string.IsNullOrEmpty(str))
+            return Vector2.zero;
+        string[] arr = str.Split(',');
+        Vector2 result;
+        float.TryParse(arr[0], out result.x);
+        float.TryParse(arr[1], out result.y);
+        return result;
+    }
 }

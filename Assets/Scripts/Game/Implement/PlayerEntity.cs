@@ -6,6 +6,8 @@ namespace GameJam2019
 {
     public class PlayerEntity : PawnBase
     {
+        private const float cDamageProtectBlinkDuration = 2;
+        private const float cDamageProtectBlinkInterval = 0.08f;
         private const float cRadius = 0.85f;
         private Vector2 cOffset = new Vector2(0, 1.2f);
 
@@ -17,6 +19,7 @@ namespace GameJam2019
             Tag = TagsUtil.Player;
             RefreshCollider(cRadius);
             collider.offset = cOffset;
+            rigidbody.mass = 5000;
             base.Init(pos, fwd);
         }
 
@@ -53,6 +56,26 @@ namespace GameJam2019
                 Attack(AttackDirEnum.Down);
             }
 
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                EntityManager.Inst.CreateSkillEntity<SkillEntity01>(this, Position, Forward);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                EntityManager.Inst.CreateSkillEntity<SkillEntity02>(this, Position, Forward);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                EntityManager.Inst.CreateSkillEntity<SkillEntity03>(this, Position, Forward);
+            }
+            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            {
+                EntityManager.Inst.CreateSkillEntity<SkillEntity04>(this, Position, Forward);
+            }
+
+
+
             base.Update();
         }
 
@@ -62,6 +85,15 @@ namespace GameJam2019
             propertyMaxHp = propertyPool.CreateProperty(PropertyEnum.MaxHp, 4);
             propertyCurHp = propertyPool.CreateProperty(PropertyEnum.CurHp, 4, OnHpValueUpdate);
             propertyAttackDamage = propertyPool.CreateProperty(PropertyEnum.AttackDamage, 1);
+            propertySp = propertyPool.CreateProperty(PropertyEnum.SpecialPoint, 200);
+        }
+
+        public override void OnDamage(float damage)
+        {
+            if (!GetActionFlag(ActionFlagEnum.ReceiveDamage))
+                return;
+            base.OnDamage(damage);
+            AddDamageProtect(cDamageProtectBlinkDuration, cDamageProtectBlinkInterval);
         }
 
         private void OnHpValueUpdate(float curV)
@@ -83,10 +115,10 @@ namespace GameJam2019
         private void RefreshSkin(int curV)
         {
             string skilName = "face01";
-            if (curV <= 3) skilName = "kuai01";
-            else if (curV <= 2) skilName = "kuai02";
+            if (curV <= 0) skilName = "kuai04";
             else if (curV <= 1) skilName = "kuai03";
-            else if (curV <= 0) skilName = "kuai04";
+            else if (curV <= 2) skilName = "kuai02";
+            else if (curV <= 3) skilName = "kuai01";
             armatureControl.SetSkin(skilName);
         }
 

@@ -1,11 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace GameJam2019
 {
     public class MainGame : MonoBehaviour
     {
+        [LabelText("是否开始测试")]
+        public bool IsTestGame;
+
+        [ShowIf("IsTestGame")]
+        [LabelText("Bgm名称")]
+        public string SoundName;
+
         void Start()
         {
             InitGame();
@@ -35,17 +44,36 @@ namespace GameJam2019
 
         private void StartGame()
         {
-            EntityManager.Inst.CreatePlayer(Vector2.zero, Vector2.right);
-            
+            if (IsTestGame)
+            {
+                EntityManager.Inst.CreatePlayer(Vector2.zero, Vector2.right);
+                var cmp = gameObject.AddComponent<MusicOrCreate>();
+                string path = string.Format("{0}/Resources/Config/MusicData_Test", Application.dataPath);
+                string configData = File.ReadAllText(path);
+                cmp.StartPlay(SoundName, configData);
+            }
+            else
+            {
+
+            }
         }
 
         private void TestCreateMonster()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (!IsTestGame)
             {
-                Vector2 worldPos = CameraController.Inst.MousePosition;
-                EntityManager.Inst.CreateEnemy<EnemyEntity>(worldPos, Vector2.right);
+                if (Input.GetMouseButtonDown(0))
+                {
+                    var ui = UIManager.Inst.GetUIPanel<UIPanelAddMusicData>();
+                    if (ui == null || !ui.IsShow)
+                        UIManager.Inst.OpenUIPanel<UIPanelAddMusicData>();
+                }
             }
+            //if (Input.GetMouseButtonDown(0))
+            //{
+            //    Vector2 worldPos = CameraController.Inst.MousePosition;
+            //    EntityManager.Inst.CreateEnemy<EnemyEntity>(worldPos, Vector2.right);
+            //}
         }
     }
 }

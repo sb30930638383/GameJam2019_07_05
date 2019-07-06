@@ -9,7 +9,10 @@ namespace GameJam2019
         public static EntityManager Inst { get { return inst; } }
         private static EntityManager inst = new EntityManager();
 
+        public Dictionary<int, EnemyEntity> EnemyDict { get { return enemyDict; } }
+
         private Dictionary<int, EntityBase> entityDict = new Dictionary<int, EntityBase>();
+        private Dictionary<int, EnemyEntity> enemyDict = new Dictionary<int, EnemyEntity>();
         private Dictionary<GameObject, EntityBase> entityObjectDict = new Dictionary<GameObject, EntityBase>();
 
         public T GetEntity<T>(int id) where T : EntityBase
@@ -32,6 +35,7 @@ namespace GameJam2019
             t.Init(pos, fwd);
             entityDict.Add(t.Id, t);
             entityObjectDict.Add(t.gameObject, t);
+            enemyDict.Add(t.Id, t);
             return t;
         }
 
@@ -53,6 +57,12 @@ namespace GameJam2019
             entityObjectDict.Add(entity.gameObject, entity);
         }
 
+        public void CreateSkillEntity<T>(PawnBase owner, Vector2 pos, Vector2 fwd) where T : SkillEntityBase
+        {
+            SkillEntityBase entity = EntityBase.FactoryCreate<T>();
+            entity.Init(owner, pos, fwd);
+        }
+
         public void RemoveEntity(EntityBase entity)
         {
             if (entity == null) return;
@@ -60,6 +70,8 @@ namespace GameJam2019
                 entityDict.Remove(entity.Id);
             if (entityObjectDict.ContainsKey(entity.gameObject))
                 entityObjectDict.Remove(entity.gameObject);
+            if (entity.CompareTag(TagsUtil.Enemy))
+                enemyDict.Remove(entity.Id);
         }
     }
 }

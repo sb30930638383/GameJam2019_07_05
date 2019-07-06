@@ -232,7 +232,6 @@ MonoBehaviour:
   bornPoint: []
   waves: []
   moveWaitTime: 0.5
-  isBuilding: 0
   waveCameraControl1: 3
   waveCameraControl2: 5
 --- !u!20 &519420031
@@ -720,6 +719,7 @@ MonoBehaviour:
   hpMax: 7
   atk: 1
   speed: 3
+  weapon: {fileID: 0}
 --- !u!61 &1512008646
 BoxCollider2D:
   m_ObjectHideFlags: 0

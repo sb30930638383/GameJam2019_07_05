@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace GameJam2019
@@ -68,6 +69,34 @@ namespace GameJam2019
             PawnBase pawn = EntityManager.Inst.GetEntity<PawnBase>(id);
             if (pawn != null)
                 pawn.OnDamage(damage);
+        }
+
+        /// <summary>
+        /// 清空当前所有怪物.
+        /// </summary>
+        public void SendClearEnemy()
+        {
+            MessageHandler.Inst.SendMsg(MessageEnum.ClearEnemy);
+        }
+        [MessageHandler(MessageEnum.ClearEnemy)]
+        public void ReceiveClearEnemy(GamePlayer gamePlayer, params object[] objs)
+        {
+            DoCoroutine.StartCoroutine(IDelayDesAllEnemy());
+        }
+        private IEnumerator IDelayDesAllEnemy()
+        {
+            int maxCount = 1;
+            float interval = 0.02f;
+            int curCount = 0;
+            var list = GameUtil.GetEnemyListByDistance();
+            for (int i = 0; i < list.Count; i++)
+            {
+                list[i].OnDamage(99999);
+                if (++curCount >= maxCount)
+                {
+                    yield return new WaitForSeconds(interval);
+                }
+            }
         }
     }
 }

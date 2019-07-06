@@ -24,5 +24,10 @@
         /// </summary>
         EnemyDie = 104,
 
+        /// <summary>
+        /// 清空当前所有怪物.
+        /// </summary>
+        ClearEnemy = 105,
+
     }
 }

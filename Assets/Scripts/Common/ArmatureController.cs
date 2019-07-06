@@ -16,6 +16,7 @@ namespace GameJam2019
         private SkeletonAnimation armature;
         private MeshRenderer meshRender;
         private TrackEntry tempTrackInfo;
+        private Color tempColor = Color.white;
         private bool curFlipX;
         private float flipRatio;
 
@@ -48,6 +49,12 @@ namespace GameJam2019
                     onFinish(null);
             }
             return tempTrackInfo;
+        }
+
+        public void SetAlpha(float alpha)
+        {
+            tempColor.a = alpha;
+            armature.Skeleton.SetColor(tempColor);
         }
 
         public void SetSkin(string skinName)

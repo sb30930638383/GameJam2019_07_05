@@ -8,17 +8,18 @@ namespace GameJam2019
 {
     public class EntityBase : ObjectBase
     {
-        public Vector2 Position { get { return transform.position; } set { transform.position = value; } }
+        public Vector2 Position { get { return transform.position; } set { transform.position = value; RefreshDeepZ(); } }
         public Vector2 Forward { get { return forward; } set { forward = value.normalized; RefreshForward(); } }
         public ArmatureController ArmatureControl { get { return armatureControl; } }
         public GameObject Model { get { return model; } }
         public string Tag { get { return tag; } set { transform.SetTagWithChild(value); } }
 
-        protected Vector2 forward;
+        protected Vector3 tempDeep;
         protected GameObject model;
         protected new CircleCollider2D collider;
         protected new Rigidbody2D rigidbody;
         protected ArmatureController armatureControl;
+        private Vector2 forward;
 
         public EntityBase()
         {
@@ -42,6 +43,11 @@ namespace GameJam2019
             armatureControl.SetForward(forward);
         }
 
+        public void Move(Vector2 dir)
+        {
+            Position += dir;
+        }
+
         /// <summary>
         /// 刷新模型.
         /// </summary>
@@ -49,6 +55,13 @@ namespace GameJam2019
         {
             DesModel();
             CreateModel(resName);
+        }
+
+        public virtual void RefreshDeepZ()
+        {
+            tempDeep = Position;
+            tempDeep.z = tempDeep.y;
+            transform.position = tempDeep;
         }
 
         protected void CreateModel(string resName)
@@ -94,6 +107,12 @@ namespace GameJam2019
         {
             return armatureControl.Play(trackIndex, animName, loop, onFinish);
         }
+
+        protected virtual void OnCollisionEnter2D(Collision2D col) { }
+
+        protected virtual void OnTriggerEnter2D(Collider2D col) { }
+
+        protected virtual void OnTriggerStay2D(Collider2D col) { }
 
         /// <summary>
         /// 死亡时.

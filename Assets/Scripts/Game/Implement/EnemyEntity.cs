@@ -45,6 +45,17 @@ namespace GameJam2019
             propertyAttackDamage = propertyPool.CreateProperty(PropertyEnum.AttackDamage, Damage);
         }
 
+        protected override void OnCollisionEnter2D(Collision2D col)
+        {
+            if (col.collider.CompareTag(TagsUtil.Player))
+            {
+                PlayerEntity player = EntityManager.Inst.GetEntity<PlayerEntity>(col.gameObject);
+                if (player != null)
+                    MessageManager.Inst.SendDamagePawn(player.Id, propertyAttackDamage.ValueFixed);
+            }
+            base.OnCollisionEnter2D(col);
+        }
+
         private void TempMoveToTargetPos()
         {
             if (Global.Player == null)

@@ -4,51 +4,65 @@ size: 2048,256
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
+daji
+  rotate: false
+  xy: 723, 24
+  size: 217, 208
+  orig: 217, 208
+  offset: 0, 0
+  index: -1
+daji2
+  rotate: false
+  xy: 2, 2
+  size: 542, 27
+  orig: 542, 27
+  offset: 0, 0
+  index: -1
 daoguang01
   rotate: false
-  xy: 723, 5
+  xy: 942, 34
   size: 130, 198
   orig: 130, 198
   offset: 0, 0
   index: -1
 daoguang02
   rotate: false
-  xy: 855, 17
+  xy: 1074, 46
   size: 130, 186
   orig: 130, 186
   offset: 0, 0
   index: -1
 daoguang03
   rotate: false
-  xy: 987, 39
+  xy: 1206, 68
   size: 93, 164
   orig: 93, 164
   offset: 0, 0
   index: -1
 daoguang04
   rotate: false
-  xy: 1082, 53
+  xy: 1301, 82
   size: 73, 150
   orig: 73, 150
   offset: 0, 0
   index: -1
 guangquan
   rotate: false
-  xy: 2, 2
+  xy: 2, 31
   size: 719, 201
   orig: 719, 201
   offset: 0, 0
   index: -1
 star01
   rotate: false
-  xy: 1157, 98
+  xy: 1376, 127
   size: 66, 105
   orig: 66, 105
   offset: 0, 0
   index: -1
 upup
   rotate: false
-  xy: 1225, 127
+  xy: 1444, 156
   size: 58, 76
   orig: 58, 76
   offset: 0, 0

@@ -34,6 +34,14 @@ namespace GameJam2019
             return panelBase as T;
         }
 
+        public T GetUIPanel<T>() where T : UIPanelBase
+        {
+            pName = typeof(T).Name;
+            UIPanelBase panelBase;
+            uiPanelDict.TryGetValue(pName, out panelBase);
+            return panelBase as T;
+        }
+
         public void HideUIPanel<T>()
         {
             pName = typeof(T).Name;
