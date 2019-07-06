@@ -102,11 +102,6 @@ namespace GameJam2019
             return hfsm.Post(evt);
         }
 
-        public TrackEntry PlayAnimation(int trackIndex, string animName, bool loop, Spine.AnimationState.TrackEntryDelegate onFinish = null)
-        {
-            return armatureControl.Play(trackIndex, animName, loop, onFinish);
-        }
-
         public virtual string GetAnimNameByState(string nameBase)
         {
             return nameBase;

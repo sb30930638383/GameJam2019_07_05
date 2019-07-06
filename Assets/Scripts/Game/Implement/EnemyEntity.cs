@@ -57,6 +57,12 @@ namespace GameJam2019
             Post(new HFSMEvent("Action.Move", tempDir));
         }
 
+        public override void OnDie()
+        {
+            EntityManager.Inst.CreateEnemyBody(Position);
+            base.OnDie();
+        }
+
         public override string GetAnimNameByState(string nameBase)
         {
             switch (nameBase.ToLower())

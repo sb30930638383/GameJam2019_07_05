@@ -9,9 +9,12 @@ namespace GameJam2019
 {
     public class ArmatureController
     {
+        public string SortingLayerName { get { return meshRender.sortingLayerName; } set { meshRender.sortingLayerName = value; } }
+        public int SortingOrder { get { return meshRender.sortingOrder; } set { meshRender.sortingOrder = value; } }
         public float FlipX { get { return armature.Skeleton.ScaleX; } set { armature.Skeleton.ScaleX = value; } }
 
         private SkeletonAnimation armature;
+        private MeshRenderer meshRender;
         private TrackEntry tempTrackInfo;
         private bool curFlipX;
         private float flipRatio;
@@ -20,6 +23,7 @@ namespace GameJam2019
         {
             System.Diagnostics.Debug.Assert(armature == null, "spine animation component is null.");
             this.armature = armature;
+            meshRender = armature.GetComponent<MeshRenderer>();
             curFlipX = false;
         }
 
@@ -37,6 +41,11 @@ namespace GameJam2019
             if (tempTrackInfo != null)
             {
                 tempTrackInfo.Complete += onFinish;
+            }
+            else
+            {
+                if (onFinish != null)
+                    onFinish(null);
             }
             return tempTrackInfo;
         }

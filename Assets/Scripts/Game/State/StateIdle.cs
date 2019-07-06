@@ -15,6 +15,8 @@ namespace GameJam2019
             AddActionOnStart(() =>
             {
                 mOwner.PlayAnimation(0, mOwner.GetAnimNameByState("idle"), true);
+                if (mOwner.CompareTag(TagsUtil.Player))
+                    mOwner.PlayAnimation(2, mOwner.GetAnimNameByState("idle_tui"), true);
             });
         }
 

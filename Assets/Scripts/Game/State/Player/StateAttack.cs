@@ -12,6 +12,7 @@ namespace GameJam2019
         private string animName;
         private List<Weapon> weaponList = new List<Weapon>();
         private PropertyNode propertyAttackDamage;
+        private bool ignoreMoveAnim;
 
 
         public StateAttack(PawnBase owner) : base(owner)
@@ -26,6 +27,7 @@ namespace GameJam2019
             for (int i = 0; i < weaponList.Count; i++)
             {
                 weaponList[i].Init(TagsUtil.Enemy);
+                weaponList[i].SetOnHit(OnHit);
             }
             RefreshColliderActive(-1);
         }
@@ -93,12 +95,22 @@ namespace GameJam2019
             const float tempMoveSpeed = 0.1f;
             mOwner.Forward = dir;
             mOwner.Move(dir * tempMoveSpeed);
-            mOwner.PlayAnimation(0, mOwner.GetAnimNameByState("move"), true);
+            if (!ignoreMoveAnim)
+            {
+                mOwner.PlayAnimation(0, mOwner.GetAnimNameByState("move"), true);
+                mOwner.PlayAnimation(2, mOwner.GetAnimNameByState("move_tui"), true);
+            }
+            ignoreMoveAnim = true;
         }
 
         private void DoStopMove()
         {
-            mOwner.PlayAnimation(0, mOwner.GetAnimNameByState("idle"), true);
+            if (ignoreMoveAnim)
+            {
+                mOwner.PlayAnimation(0, mOwner.GetAnimNameByState("idle"), true);
+                mOwner.PlayAnimation(2, mOwner.GetAnimNameByState("idle_tui"), true);
+            }
+            ignoreMoveAnim = false;
         }
 
         private void RefreshColliderActive(int index)
@@ -123,6 +135,11 @@ namespace GameJam2019
             {
                 weaponList[i].ClearCoolingTime();
             }
+        }
+
+        private void OnHit()
+        {
+            CameraController.Inst.Shake(4f, 0.3f, 3f, 0);
         }
     }
 }

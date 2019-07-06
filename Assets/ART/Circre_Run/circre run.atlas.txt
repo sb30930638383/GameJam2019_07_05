@@ -1,6 +1,6 @@
 
 circre run.png
-size: 1024,64
+size: 256,64
 format: RGBA8888
 filter: Linear,Linear
 repeat: none

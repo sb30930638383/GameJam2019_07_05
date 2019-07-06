@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,13 +9,13 @@ namespace GameJam2019
     {
         public Dictionary<PropertyEnum, PropertyNode> propertyDict = new Dictionary<PropertyEnum, PropertyNode>();
 
-        public PropertyNode CreateProperty(PropertyEnum propertyType, float valueBase)
+        public PropertyNode CreateProperty(PropertyEnum propertyType, float valueBase, Action<float> onValueChanged = null)
         {
             PropertyNode property;
             if (!propertyDict.TryGetValue(propertyType, out property))
             {
                 property = new PropertyNode();
-                property.Init(valueBase);
+                property.Init(valueBase, onValueChanged);
                 propertyDict.Add(propertyType, property);
             }
             property.ResetValueBase(valueBase);

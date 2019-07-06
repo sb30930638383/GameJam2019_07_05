@@ -45,6 +45,14 @@ namespace GameJam2019
             return entity;
         }
 
+        public void CreateEnemyBody(Vector2 pos)
+        {
+            EnemyBodyEntity entity = EntityBase.FactoryCreate<EnemyBodyEntity>();
+            entity.Init(pos, Vector2.right);
+            entityDict.Add(entity.Id, entity);
+            entityObjectDict.Add(entity.gameObject, entity);
+        }
+
         public void RemoveEntity(EntityBase entity)
         {
             if (entity == null) return;

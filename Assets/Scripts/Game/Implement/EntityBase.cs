@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Spine.Unity;
+using Spine;
 
 namespace GameJam2019
 {
@@ -58,6 +59,7 @@ namespace GameJam2019
                 model = Instantiate(model, transform);
                 armatureControl.Init(model.GetComponent<SkeletonAnimation>());
                 armatureControl.SetFlipRatio(0.4f);
+                armatureControl.SortingLayerName = SortingLayerUtil.Entity;
             }
         }
 
@@ -86,6 +88,11 @@ namespace GameJam2019
                 Destroy(model);
                 model = null;
             }
+        }
+
+        public TrackEntry PlayAnimation(int trackIndex, string animName, bool loop, Spine.AnimationState.TrackEntryDelegate onFinish = null)
+        {
+            return armatureControl.Play(trackIndex, animName, loop, onFinish);
         }
 
         /// <summary>

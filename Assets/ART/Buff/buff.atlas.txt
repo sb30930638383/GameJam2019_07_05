@@ -1,54 +1,54 @@
 
 buff.png
-size: 1024,512
+size: 2048,256
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 daoguang01
   rotate: false
-  xy: 2, 109
+  xy: 723, 5
   size: 130, 198
   orig: 130, 198
   offset: 0, 0
   index: -1
 daoguang02
   rotate: false
-  xy: 723, 324
+  xy: 855, 17
   size: 130, 186
   orig: 130, 186
   offset: 0, 0
   index: -1
 daoguang03
   rotate: false
-  xy: 134, 143
+  xy: 987, 39
   size: 93, 164
   orig: 93, 164
   offset: 0, 0
   index: -1
 daoguang04
   rotate: false
-  xy: 855, 360
+  xy: 1082, 53
   size: 73, 150
   orig: 73, 150
   offset: 0, 0
   index: -1
 guangquan
   rotate: false
-  xy: 2, 309
+  xy: 2, 2
   size: 719, 201
   orig: 719, 201
   offset: 0, 0
   index: -1
 star01
   rotate: false
-  xy: 2, 2
+  xy: 1157, 98
   size: 66, 105
   orig: 66, 105
   offset: 0, 0
   index: -1
 upup
   rotate: false
-  xy: 229, 231
+  xy: 1225, 127
   size: 58, 76
   orig: 58, 76
   offset: 0, 0

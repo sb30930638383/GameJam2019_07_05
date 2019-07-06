@@ -2,19 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 using GameJam2019;
-
+using System;
 
 namespace GameJam2019
 {
     public class Weapon : MonoBehaviour
     {
         private List<Collider2D> ignoreList = new List<Collider2D>();
+        private Action onHit;
         private float damage;
         private string targetTag;
 
         public void Init(string targetTag)
         {
             this.targetTag = targetTag;
+        }
+
+        public void SetOnHit(Action onHit)
+        {
+            this.onHit = onHit;
         }
 
         public void SetDamage(float damage)
@@ -42,6 +48,8 @@ namespace GameJam2019
                 if (enemy != null)
                     MessageManager.Inst.SendDamagePawn(enemy.Id, damage);
                 ignoreList.Add(col);
+
+                if (onHit != null) onHit();
             }
         }
 
