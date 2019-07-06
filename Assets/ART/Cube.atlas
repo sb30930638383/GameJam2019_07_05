@@ -1,0 +1,76 @@
+
+Cube.png
+size: 512,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+blood01
+  rotate: false
+  xy: 374, 121
+  size: 45, 44
+  orig: 47, 46
+  offset: 1, 1
+  index: -1
+blood02
+  rotate: false
+  xy: 2, 173
+  size: 331, 68
+  orig: 333, 70
+  offset: 1, 1
+  index: -1
+dead01
+  rotate: false
+  xy: 159, 89
+  size: 161, 82
+  orig: 163, 84
+  offset: 1, 1
+  index: -1
+dead02
+  rotate: false
+  xy: 159, 4
+  size: 158, 83
+  orig: 160, 85
+  offset: 1, 1
+  index: -1
+face
+  rotate: false
+  xy: 322, 108
+  size: 50, 57
+  orig: 52, 59
+  offset: 1, 1
+  index: -1
+lian
+  rotate: false
+  xy: 2, 2
+  size: 155, 169
+  orig: 157, 171
+  offset: 1, 1
+  index: -1
+shou01
+  rotate: true
+  xy: 335, 167
+  size: 74, 85
+  orig: 76, 87
+  offset: 1, 1
+  index: -1
+shou02
+  rotate: true
+  xy: 422, 167
+  size: 74, 85
+  orig: 76, 87
+  offset: 1, 1
+  index: -1
+shou03
+  rotate: true
+  xy: 322, 84
+  size: 22, 49
+  orig: 24, 51
+  offset: 1, 1
+  index: -1
+shou04
+  rotate: true
+  xy: 421, 136
+  size: 29, 53
+  orig: 31, 55
+  offset: 1, 1
+  index: -1
