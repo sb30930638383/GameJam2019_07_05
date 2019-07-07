@@ -1,0 +1,55 @@
+
+Cube2.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+black
+  rotate: false
+  xy: 335, 35
+  size: 214, 214
+  orig: 214, 214
+  offset: 0, 0
+  index: -1
+kuai
+  rotate: true
+  xy: 2, 67
+  size: 182, 331
+  orig: 182, 331
+  offset: 0, 0
+  index: -1
+shou01
+  rotate: false
+  xy: 2, 2
+  size: 45, 63
+  orig: 45, 63
+  offset: 0, 0
+  index: -1
+shou02
+  rotate: false
+  xy: 551, 194
+  size: 53, 55
+  orig: 53, 55
+  offset: 0, 0
+  index: -1
+tui01
+  rotate: false
+  xy: 49, 11
+  size: 25, 54
+  orig: 25, 54
+  offset: 0, 0
+  index: -1
+tui02
+  rotate: false
+  xy: 551, 138
+  size: 20, 54
+  orig: 20, 54
+  offset: 0, 0
+  index: -1
+yan01
+  rotate: false
+  xy: 606, 231
+  size: 43, 18
+  orig: 43, 18
+  offset: 0, 0
+  index: -1

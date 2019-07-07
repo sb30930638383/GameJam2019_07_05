@@ -1,55 +1,55 @@
 
-Cube.png
-size: 512,256
+Cube3.png
+size: 1024,256
 format: RGBA8888
 filter: Linear,Linear
 repeat: none
 black
   rotate: false
-  xy: 2, 28
+  xy: 2, 22
   size: 214, 214
   orig: 214, 214
   offset: 0, 0
   index: -1
-face
-  rotate: false
-  xy: 455, 150
-  size: 52, 59
-  orig: 52, 59
-  offset: 0, 0
-  index: -1
-lian
-  rotate: false
-  xy: 218, 71
+kuai
+  rotate: true
+  xy: 473, 79
   size: 157, 171
   orig: 157, 171
   offset: 0, 0
   index: -1
 shou01
   rotate: false
-  xy: 377, 155
-  size: 76, 87
-  orig: 76, 87
+  xy: 646, 169
+  size: 54, 67
+  orig: 54, 67
   offset: 0, 0
   index: -1
 shou02
   rotate: false
-  xy: 377, 66
-  size: 76, 87
-  orig: 76, 87
+  xy: 646, 94
+  size: 47, 73
+  orig: 47, 73
   offset: 0, 0
   index: -1
-shou03
+tui01
   rotate: true
+  xy: 218, 149
+  size: 87, 253
+  orig: 87, 253
+  offset: 0, 0
+  index: -1
+tui02
+  rotate: true
+  xy: 218, 60
+  size: 87, 248
+  orig: 87, 248
+  offset: 0, 0
+  index: -1
+yan0
+  rotate: false
   xy: 2, 2
-  size: 24, 51
-  orig: 24, 51
-  offset: 0, 0
-  index: -1
-shou04
-  rotate: true
-  xy: 455, 211
-  size: 31, 55
-  orig: 31, 55
+  size: 53, 18
+  orig: 53, 18
   offset: 0, 0
   index: -1
