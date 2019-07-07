@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1b3b4b945939a54ea0b23d3396115fb, type: 3}
   m_Name: dead_SkeletonData
   m_EditorClassIdentifier: 
-  atlasAssets: []
+  atlasAssets:
+  - {fileID: 11400000, guid: 3023283ad20dedb44b1075d1363ba234, type: 2}
   scale: 0.01
   skeletonJSON: {fileID: 4900000, guid: 9b70b803eff35b84499a52e3d32956ef, type: 3}
   skeletonDataModifiers: []

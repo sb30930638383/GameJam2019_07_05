@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5062714050400171908}
   - component: {fileID: 7854054322458646947}
   m_Layer: 0
-  m_Name: Enemy01Model
+  m_Name: EnemyModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7c53a8600df351f47b9da8c5c620213e, type: 2}
+  - {fileID: 2100000, guid: 5d96919edf38f97499893d6d9b215fb8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -90,7 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d247ba06193faa74d9335f5481b2b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skeletonDataAsset: {fileID: 11400000, guid: 60316477772d7174b8085c10f58f30b6, type: 2}
+  skeletonDataAsset: {fileID: 11400000, guid: 59e69d306ccfee447abe91505007fdee, type: 2}
   initialSkinName: 
   initialFlipX: 0
   initialFlipY: 0

@@ -1,0 +1,97 @@
+
+circre.png
+size: 1024,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+face01
+  rotate: false
+  xy: 864, 182
+  size: 57, 72
+  orig: 57, 72
+  offset: 0, 0
+  index: -1
+face02
+  rotate: false
+  xy: 775, 178
+  size: 87, 76
+  orig: 87, 76
+  offset: 0, 0
+  index: -1
+fangkuai01
+  rotate: false
+  xy: 474, 157
+  size: 101, 97
+  orig: 101, 97
+  offset: 0, 0
+  index: -1
+fangkuai02
+  rotate: false
+  xy: 678, 158
+  size: 95, 96
+  orig: 95, 96
+  offset: 0, 0
+  index: -1
+fangkuai03
+  rotate: false
+  xy: 374, 149
+  size: 98, 105
+  orig: 98, 105
+  offset: 0, 0
+  index: -1
+fangkuai04
+  rotate: true
+  xy: 577, 157
+  size: 97, 99
+  orig: 97, 99
+  offset: 0, 0
+  index: -1
+jian
+  rotate: false
+  xy: 278, 120
+  size: 94, 134
+  orig: 94, 134
+  offset: 0, 0
+  index: -1
+jianf
+  rotate: false
+  xy: 179, 116
+  size: 97, 138
+  orig: 97, 138
+  offset: 0, 0
+  index: -1
+lian
+  rotate: false
+  xy: 2, 70
+  size: 175, 184
+  orig: 175, 184
+  offset: 0, 0
+  index: -1
+shou01
+  rotate: true
+  xy: 38, 12
+  size: 56, 72
+  orig: 56, 72
+  offset: 0, 0
+  index: -1
+shou02
+  rotate: false
+  xy: 923, 202
+  size: 62, 52
+  orig: 62, 52
+  offset: 0, 0
+  index: -1
+shou03
+  rotate: false
+  xy: 2, 2
+  size: 34, 66
+  orig: 34, 66
+  offset: 0, 0
+  index: -1
+shou04
+  rotate: true
+  xy: 179, 87
+  size: 27, 61
+  orig: 27, 61
+  offset: 0, 0
+  index: -1

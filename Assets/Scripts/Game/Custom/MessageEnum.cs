@@ -39,5 +39,9 @@
         /// </summary>
         PlayerDie = 107,
 
+        /// <summary>
+        /// 重置当前关卡.
+        /// </summary>
+        ResetCurrentLevel = 108,
     }
 }

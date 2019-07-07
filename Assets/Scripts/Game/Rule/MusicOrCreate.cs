@@ -15,10 +15,14 @@ namespace GameJam2019
         private Action onUpdate;
         private float startTime;
         private float maxTime;
+        private string soundName;
+        private string configData;
         private List<MusicData> dataList = new List<MusicData>();
 
         public void StartPlay(string soundName, string configData)
         {
+            this.soundName = soundName;
+            this.configData = configData;
             FormatConfig(configData);
             StartCreateEvent();
 
@@ -28,6 +32,11 @@ namespace GameJam2019
                 maxTime = clip.length + startTime;
                 AudioManager.Inst.PlayBgm(clip);
             }
+        }
+
+        public void ResetPlay()
+        {
+            StartPlay(soundName, configData);
         }
 
         private void StartCreateEvent()

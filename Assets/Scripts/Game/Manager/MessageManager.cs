@@ -125,7 +125,21 @@ namespace GameJam2019
         [MessageHandler(MessageEnum.PlayerDie)]
         public void ReceivePlayerDie()
         {
+            var ui = UIManager.Inst.OpenUIPanel<UIPanelBlackLerp>();
+            ui.Show(() =>
+            {
+                SendResetCurrentLevel();
+            });
+        }
 
+        public void SendResetCurrentLevel()
+        {
+            MessageHandler.Inst.SendMsg(MessageEnum.ResetCurrentLevel);
+        }
+        [MessageHandler(MessageEnum.ResetCurrentLevel)]
+        public void ReceiveResetCurrentLevel()
+        {
+            MusicOrCreate.Inst.ResetPlay();
         }
     }
 }
