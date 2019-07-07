@@ -29,5 +29,15 @@
         /// </summary>
         ClearEnemy = 105,
 
+        /// <summary>
+        /// 开始播放音乐.
+        /// </summary>
+        PlayMusic = 106,
+
+        /// <summary>
+        /// 玩家死亡.
+        /// </summary>
+        PlayerDie = 107,
+
     }
 }

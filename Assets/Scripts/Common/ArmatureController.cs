@@ -60,6 +60,7 @@ namespace GameJam2019
         public void SetSkin(string skinName)
         {
             armature.Skeleton.SetSkin(skinName);
+            armature.Skeleton.SetSlotAttachmentsToSetupPose();
         }
 
         public void SetEmptyAnim(int trackIndex, float mixDuration = 0.1f)

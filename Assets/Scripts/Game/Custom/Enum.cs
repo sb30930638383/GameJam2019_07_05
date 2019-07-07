@@ -6,6 +6,7 @@
         GUI = 1,
         Model = 2,
         Sound = 3,
+        Video = 4,
     }
 
     public enum AttackDirEnum
@@ -35,5 +36,8 @@
     public enum MusicImpactEnum
     {
         EnemyEntity = 0,
+        Enemy01Entity = 1,
+        Enemy02Entity = 2,
+        Enemy03Eneity = 3,
     }
 }

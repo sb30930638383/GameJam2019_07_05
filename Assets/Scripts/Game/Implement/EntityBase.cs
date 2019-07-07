@@ -40,10 +40,11 @@ namespace GameJam2019
 
         protected virtual void RefreshForward()
         {
-            armatureControl.SetForward(forward);
+            if(armatureControl != null)
+                armatureControl.SetForward(forward);
         }
 
-        public void Move(Vector2 dir)
+        public virtual void Move(Vector2 dir)
         {
             Position += dir;
         }

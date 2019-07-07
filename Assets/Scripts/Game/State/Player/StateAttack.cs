@@ -1,4 +1,5 @@
 ﻿using Spine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,6 +12,7 @@ namespace GameJam2019
         private AttackDirEnum atkDir;
         private string animName;
         private List<Weapon> weaponList = new List<Weapon>();
+        private Action onHitOn;
         private PropertyNode propertyAttackDamage;
         private bool ignoreMoveAnim;
 
@@ -38,6 +40,7 @@ namespace GameJam2019
             {
                 mOwner.ModiflyAction(ActionFlagEnum.Rotate, false);
                 atkDir = (AttackDirEnum)objs[0];
+                onHitOn = objs[1] as Action;
                 RefreshAttackDamage();
                 animName = mOwner.GetAnimNameByState(string.Format("attack_{0}", atkDir.ToString()));
                 trackEntry = mOwner.PlayAnimation(1, animName, false, OnComplete);
@@ -54,6 +57,11 @@ namespace GameJam2019
             if (e.Data.Name == "hit_on")
             {
                 RefreshColliderActive((int)atkDir);
+                if (onHitOn != null)
+                {
+                    onHitOn();
+                    onHitOn = null;
+                }
             }
             else if (e.Data.Name == "hit_off")
             {
@@ -137,8 +145,9 @@ namespace GameJam2019
             }
         }
 
-        private void OnHit()
+        private void OnHit(Vector2 point)
         {
+            EntityManager.Inst.CreateSpineEffect(point, "HitEffectModel", "kanji");
             CameraController.Inst.Shake(4f, 0.3f, 3f, 0);
         }
     }

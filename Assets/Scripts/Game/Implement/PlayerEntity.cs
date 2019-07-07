@@ -34,6 +34,13 @@ namespace GameJam2019
 
         protected override void Update()
         {
+            if (Global.IsPerform) return;
+
+            if (Input.GetKeyDown(KeyCode.P))
+            {
+                armatureControl.SetSkin("kuai04");
+            }
+
             moveCache.x = Input.GetAxis("Horizontal");
             moveCache.y = Input.GetAxis("Vertical");
 
@@ -57,19 +64,19 @@ namespace GameJam2019
             }
 
 
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.K))
             {
-                EntityManager.Inst.CreateSkillEntity<SkillEntity01>(this, Position, Forward);
+                Attack(AttackDirEnum.Right, CreateSkill01);
             }
-            else if (Input.GetKeyDown(KeyCode.Alpha2))
-            {
-                EntityManager.Inst.CreateSkillEntity<SkillEntity02>(this, Position, Forward);
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha3))
-            {
-                EntityManager.Inst.CreateSkillEntity<SkillEntity03>(this, Position, Forward);
-            }
-            else if (Input.GetKeyDown(KeyCode.Alpha4))
+            //else if (Input.GetKeyDown(KeyCode.Alpha2))
+            //{
+            //    EntityManager.Inst.CreateSkillEntity<SkillEntity02>(this, Position, Forward);
+            //}
+            //else if (Input.GetKeyDown(KeyCode.Alpha3))
+            //{
+            //    EntityManager.Inst.CreateSkillEntity<SkillEntity03>(this, Position, Forward);
+            //}
+            else if (Input.GetKeyDown(KeyCode.Space))
             {
                 EntityManager.Inst.CreateSkillEntity<SkillEntity04>(this, Position, Forward);
             }
@@ -77,6 +84,15 @@ namespace GameJam2019
 
 
             base.Update();
+        }
+
+        private void CreateSkill01()
+        {
+            Vector2 bornPos = Position;
+            bornPos.y += 0.9f;
+            Vector2 dir = armatureControl.FlipX > 0 ? Vector2.left : Vector2.right;
+            bornPos.x += dir.x * 0.5f;
+            EntityManager.Inst.CreateSkillEntity<SkillEntity01>(this, bornPos, dir);
         }
 
         protected override void InitPropertyPool()
@@ -110,6 +126,17 @@ namespace GameJam2019
         protected void TempStopMove()
         {
             Post("Action.StopMove");
+        }
+
+        public override void Move(Vector2 dir)
+        {
+            base.Move(dir);
+            Vector2 minPos = Global.MainCamera.ViewportToWorldPoint(Vector2.zero);
+            Vector2 maxPos = Global.MainCamera.ViewportToWorldPoint(Vector2.one);
+            Vector2 pos = Position;
+            pos.x = Mathf.Clamp(pos.x, minPos.x, maxPos.x);
+            pos.y = Mathf.Clamp(pos.y , minPos.y, maxPos.y);
+            Position = pos;
         }
 
         private void RefreshSkin(int curV)

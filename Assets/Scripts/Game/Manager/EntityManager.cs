@@ -63,6 +63,12 @@ namespace GameJam2019
             entity.Init(owner, pos, fwd);
         }
 
+        public void CreateSpineEffect(Vector2 pos, string modelRes, string animName)
+        {
+            SpineEffectEntity entity = EntityBase.FactoryCreate<SpineEffectEntity>();
+            entity.Init(pos, modelRes, animName);
+        }
+
         public void RemoveEntity(EntityBase entity)
         {
             if (entity == null) return;

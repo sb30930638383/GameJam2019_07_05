@@ -8,15 +8,16 @@ namespace GameJam2019
     {
         private const float cRadius = 0.85f;
         private Vector2 cOffset = new Vector2(0, 1.2f);
+        private const float cMoveSpeed = 3f;
+        private float cMaxHp = 1;
+        private float cDamage = 1;
+        protected string cModelName = "EnemyModel";
 
-        public float MoveSpeed = 1.5f;
-        public float MaxHp = 1;
-        public float Damage = 1;
         private Vector2 tempDir;
 
         public override void Init(Vector2 pos, Vector2 fwd)
         {
-            RefreshModel("EnemyModel");
+            RefreshModel(cModelName);
             Tag = TagsUtil.Enemy;
             RefreshCollider(cRadius);
             collider.offset = cOffset;
@@ -28,21 +29,24 @@ namespace GameJam2019
             hfsm.AddState("StateIdle", new StateIdle(this));
             hfsm.AddState("StateMove", new StateMove(this));
             hfsm.AddState("StateDead", new StateDead(this));
-            hfsm.Init("StateIdle");
+            hfsm.AddState("StateBorn", new StateBorn(this));
+            hfsm.Init("StateBorn");
         }
 
         protected override void Update()
         {
+            if (Global.IsPerform) return;
+
             TempMoveToTargetPos();
             base.Update();
         }
 
         protected override void InitPropertyPool()
         {
-            propertyMoveSpeed = propertyPool.CreateProperty(PropertyEnum.MoveSpeed, MoveSpeed);
-            propertyMaxHp = propertyPool.CreateProperty(PropertyEnum.MaxHp, MaxHp);
-            propertyCurHp = propertyPool.CreateProperty(PropertyEnum.CurHp, MaxHp);
-            propertyAttackDamage = propertyPool.CreateProperty(PropertyEnum.AttackDamage, Damage);
+            propertyMoveSpeed = propertyPool.CreateProperty(PropertyEnum.MoveSpeed, cMoveSpeed);
+            propertyMaxHp = propertyPool.CreateProperty(PropertyEnum.MaxHp, cMaxHp);
+            propertyCurHp = propertyPool.CreateProperty(PropertyEnum.CurHp, cMaxHp);
+            propertyAttackDamage = propertyPool.CreateProperty(PropertyEnum.AttackDamage, cDamage);
         }
 
         protected override void OnCollisionEnter2D(Collision2D col)
@@ -80,6 +84,7 @@ namespace GameJam2019
             {
                 case "idle": return "idle";
                 case "move": return "walk";
+                case "show": return "show";
                 default: return nameBase;
             }
         }

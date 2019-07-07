@@ -55,9 +55,9 @@ namespace GameJam2019
             base.RefreshForward();
         }
 
-        public void Attack(AttackDirEnum atkDir)
+        public void Attack(AttackDirEnum atkDir, Action onHitOn = null)
         {
-            Post(new HFSMEvent("State.ChangeState.Attack", atkDir));
+            Post(new HFSMEvent("State.ChangeState.Attack", atkDir, onHitOn));
         }
 
         public void InitActionFlag(ActionFlagEnum actionFlag)

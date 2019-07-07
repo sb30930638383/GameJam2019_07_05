@@ -9,7 +9,7 @@ namespace GameJam2019
     public class Weapon : MonoBehaviour
     {
         private List<Collider2D> ignoreList = new List<Collider2D>();
-        private Action onHit;
+        private Action<Vector2> onHit;
         private float damage;
         private string targetTag;
 
@@ -18,7 +18,7 @@ namespace GameJam2019
             this.targetTag = targetTag;
         }
 
-        public void SetOnHit(Action onHit)
+        public void SetOnHit(Action<Vector2> onHit)
         {
             this.onHit = onHit;
         }
@@ -49,7 +49,7 @@ namespace GameJam2019
                     MessageManager.Inst.SendDamagePawn(enemy.Id, damage);
                 ignoreList.Add(col);
 
-                if (onHit != null) onHit();
+                if (onHit != null) onHit(col.transform.position);
             }
         }
 

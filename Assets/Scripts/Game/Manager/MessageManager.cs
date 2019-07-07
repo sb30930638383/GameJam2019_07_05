@@ -92,11 +92,40 @@ namespace GameJam2019
             for (int i = 0; i < list.Count; i++)
             {
                 list[i].OnDamage(99999);
+                CameraController.Inst.Shake(2f, 0.3f, 3f, 0);
                 if (++curCount >= maxCount)
                 {
                     yield return new WaitForSeconds(interval);
                 }
             }
+        }
+
+        /// <summary>
+        /// 开始播放音乐.
+        /// </summary>
+        public void SendPlayMusic(string soundName, string jsonData)
+        {
+            MessageHandler.Inst.SendMsg(MessageEnum.PlayMusic, soundName, jsonData);
+        }
+        [MessageHandler(MessageEnum.PlayMusic)]
+        public void ReceivePlayMusic(GamePlayer gamePlayer, params object[] objs)
+        {
+            if (Global.Player == null)
+                EntityManager.Inst.CreatePlayer(Vector2.zero, Vector2.right);
+            MusicOrCreate.Inst.StartPlay((string)objs[0], (string)objs[1]);
+        }
+
+        /// <summary>
+        /// 玩家死亡.
+        /// </summary>
+        public void SendPlayerDie()
+        {
+
+        }
+        [MessageHandler(MessageEnum.PlayerDie)]
+        public void ReceivePlayerDie()
+        {
+
         }
     }
 }

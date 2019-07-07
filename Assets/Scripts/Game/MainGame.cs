@@ -23,6 +23,7 @@ namespace GameJam2019
 
         void Update()
         {
+            MusicOrCreate.Inst.Update();
             TestCreateMonster();
         }
 
@@ -34,6 +35,7 @@ namespace GameJam2019
             GamePlayer.Inst.Init();
             UIManager.Inst.Init();
             MessageHandler.Inst.Init();
+            AudioManager.Inst.Init();
 
             MessageManager.Inst.SendLog("============打印我叭===========");
             MessageManager.Inst.SendAddGameScore(233);
@@ -46,15 +48,8 @@ namespace GameJam2019
         {
             if (IsTestGame)
             {
-                EntityManager.Inst.CreatePlayer(Vector2.zero, Vector2.right);
-                var cmp = gameObject.AddComponent<MusicOrCreate>();
-                string path = string.Format("{0}/Resources/Config/MusicData_Test", Application.dataPath);
-                string configData = File.ReadAllText(path);
-                cmp.StartPlay(SoundName, configData);
-            }
-            else
-            {
-
+                string jsonData = MusicOrCreate.GetJson();
+                MessageManager.Inst.SendPlayMusic(SoundName, jsonData);
             }
         }
 
